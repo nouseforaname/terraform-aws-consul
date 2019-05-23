@@ -161,7 +161,7 @@ module "security_group_rules" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "aws_iam_instance_profile" "instance_profile" {
-  count = "${var.enable_iam_setup}"
+  count = "${var.enable_iam_setup ? 1 : 0}"
 
   name_prefix = "${var.cluster_name}"
   path        = "${var.instance_profile_path}"
@@ -176,7 +176,7 @@ resource "aws_iam_instance_profile" "instance_profile" {
 }
 
 resource "aws_iam_role" "instance_role" {
-  count = "${var.enable_iam_setup}"
+  count = "${var.enable_iam_setup ? 1 : 0}"
 
   name_prefix        = "${var.cluster_name}"
   assume_role_policy = "${data.aws_iam_policy_document.instance_role.json}"
