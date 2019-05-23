@@ -42,8 +42,8 @@ resource "aws_autoscaling_group" "autoscaling_group" {
       value               = "${var.cluster_tag_value}"
       propagate_at_launch = true
     },
-    "${var.tags}",
   ]
+  tags = "${var.tags}"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
